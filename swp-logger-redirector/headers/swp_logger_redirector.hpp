@@ -1,6 +1,6 @@
 #pragma once
 
-namespace swp_template
+namespace swp_logger_redirector
 {
   class plugin final : public swpsdk::plugin::base<plugin>
   {

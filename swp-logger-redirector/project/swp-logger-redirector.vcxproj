@@ -80,22 +80,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)output\</OutDir>
+    <OutDir>$(SolutionDir)output\plugins\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir).tmp\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)output\</OutDir>
+    <OutDir>$(SolutionDir)output\plugins\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir).tmp\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)output\</OutDir>
+    <OutDir>$(SolutionDir)output\plugins\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir).tmp\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)output\</OutDir>
+    <OutDir>$(SolutionDir)output\plugins\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir).tmp\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
@@ -191,17 +191,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\headers\pch.hpp" />
-    <ClInclude Include="..\headers\swp_template.hpp" />
+    <ClInclude Include="..\headers\swp_logger_redirector.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sources\attach.cpp" />
+    <ClCompile Include="..\sources\logs.cpp" />
     <ClCompile Include="..\sources\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\sources\swp_template.cpp" />
+    <ClCompile Include="..\sources\swp_logger_redirector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\swp-sdk\project\swp-sdk.vcxproj">

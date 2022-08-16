@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\headers\swp_template.hpp">
+    <ClInclude Include="..\headers\swp_logger_redirector.hpp">
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="..\headers\pch.hpp">
@@ -26,10 +26,13 @@
     <ClCompile Include="..\sources\attach.cpp">
       <Filter>sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\sources\swp_template.cpp">
+    <ClCompile Include="..\sources\swp_logger_redirector.cpp">
       <Filter>sources</Filter>
     </ClCompile>
     <ClCompile Include="..\sources\pch.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sources\logs.cpp">
       <Filter>sources</Filter>
     </ClCompile>
   </ItemGroup>
