@@ -29,7 +29,7 @@ First of all, after the first launch of the game with the loader, in the folder 
 > [The available logging levels can be found in the source code of spdlog](https://github.com/gabime/spdlog/blob/v1.x/include/spdlog/common.h#L244)
 
 - Unpack the latest available archive from the [release](../../releases) page into your game folder. Replace the files if necessary
-- To use the loader, you need some kind of launcher. If you don't have one, you can use [this](https://github.com/SoulWorkerResearch/swp-launcher)
+- Also, you need to install the [plugin loader](https://github.com/SoulWorkerResearch/swp-launcher)
 - Now you can run the game using steam
 
 ## For Developers
