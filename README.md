@@ -6,6 +6,8 @@
 
 This is an example of a plugin for the [plugin loader](https://github.com/SoulWorkerResearch/swp-loader). It can also be useful when developing your own plugins. Its task is to redirect the game logs to spdlog
 
+![image](https://user-images.githubusercontent.com/10461884/230788524-25814644-efe9-4cfc-a48e-ea07f343b527.png)
+
 ## How to
 
 First of all, after the first launch of the game with the loader, in the folder with the game there will be a file: `configs/loader.json`.
