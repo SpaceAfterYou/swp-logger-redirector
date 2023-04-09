@@ -1,9 +1,41 @@
-# SWP Logger Redirector
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct-single.svg)](https://stand-with-ukraine.pp.ua)
 
-![MatWorker](https://img.shields.io/badge/Mat-Worker-lightgrey?style=for-the-badge&logo=data:image/webp;base64,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)
+# SoulWorker Plugin: Logger Redirector
 
-Bypassing log overwrite protection.
+## What the...
+
+This is an example of a plugin for the [plugin loader](https://github.com/SoulWorkerResearch/swp-loader). It can also be useful when developing your own plugins. Its task is to redirect the game logs to spdlog
+
+## How to
+
+First of all, after the first launch of the game with the loader, in the folder with the game there will be a file: `configs/loader.json`.
+
+```jsonc
+{
+  // ...
+
+  // An optional step. This will enable the terminal.
+  // Without it, the output will only go to a file in the logs folder.
+  // With this both to the terminal and to the file.
+  "use_console": true, 
+
+  // Logging level.
+  "level": "trace"
+
+  // ...
+}
+```
+
+> [The available logging levels can be found in the source code of spdlog](https://github.com/gabime/spdlog/blob/v1.x/include/spdlog/common.h#L244)
+
+- Unpack the latest available archive from the [release](../../releases) page into your game folder. Replace the files if necessary
+- To use the loader, you need some kind of launcher. If you don't have one, you can use [this](https://github.com/SoulWorkerResearch/swp-launcher)
+- Now you can run the game using steam
+
+## For Developers
+
+[Your place is here](https://github.com/SoulWorkerResearch/swp-sdk)
 
 ## [Well cum 👌 to discord](http://discord.gg/SequFJP)
 
-[![Discord](https://img.shields.io/discord/606442027873206292?style=for-the-badge&label=Discor%20server)](http://discord.gg/SequFJP)
+[![Discord](https://img.shields.io/discord/606442027873206292?style=flat-square)](http://discord.gg/SequFJP)

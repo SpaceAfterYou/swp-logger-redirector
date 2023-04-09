@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="headers">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="headers\hooks">
+      <UniqueIdentifier>{9a9597e5-2fab-420a-92e4-cb969cbafd9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="headers\hooks\show_user_ex_log">
+      <UniqueIdentifier>{289d7385-8e55-4060-9e59-6c944c95c825}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="headers\hooks\show_log">
+      <UniqueIdentifier>{80d5d9b1-21fc-48f6-8ce7-31081b4af7ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\hooks">
+      <UniqueIdentifier>{fb5c140f-3ee5-4d76-868d-00e5b7b56fa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\hooks\show_log">
+      <UniqueIdentifier>{e4bf1507-fb24-473a-a890-101e40cb0e2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources\hooks\show_user_ex_log">
+      <UniqueIdentifier>{c9cc6316-2b8f-437c-a6f7-90dd3e0b01c4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\sources\plugin.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\pch.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\get_info.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\hooks\show_user_ex_log\mock.cpp">
+      <Filter>sources\hooks\show_user_ex_log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\hooks\show_log\mock.cpp">
+      <Filter>sources\hooks\show_log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\hooks\show_log\install.cpp">
+      <Filter>sources\hooks\show_log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sources\hooks\show_user_ex_log\install.cpp">
+      <Filter>sources\hooks\show_user_ex_log</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\headers\pch.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\headers\framework.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\headers\targetver.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\headers\plugin.hpp">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\headers\hooks\show_user_ex_log\mock.hpp">
+      <Filter>headers\hooks\show_user_ex_log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\headers\hooks\show_user_ex_log\install.hpp">
+      <Filter>headers\hooks\show_user_ex_log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\headers\hooks\show_log\mock.hpp">
+      <Filter>headers\hooks\show_log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\headers\hooks\show_log\install.hpp">
+      <Filter>headers\hooks\show_log</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

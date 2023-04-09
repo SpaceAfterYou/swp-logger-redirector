@@ -1,5 +1,5 @@
 {
-  "name": "swp-template",
+  "name": "swp-logger-redirector",
   "version": "1.0.0",
-  "dependencies": [ "spdlog", "neargye-semver", "detours" ]
+  "dependencies": [ "spdlog", "nlohmann-json", "detours" ]
 }
