@@ -36,6 +36,8 @@ First of all, after the first launch of the game with the loader, in the folder 
 
 ## For Developers
 
+- [vcpkg](https://vcpkg.io/) is needed for dependency management. If you don't want to fuck with it (GLHF), you can install dependencies yourself. They are listed in the `vcpkg.json` file under the `dependencies` property
+
 [Your place is here](https://github.com/SoulWorkerResearch/swp-sdk)
 
 ## [Well cum 👌 to discord](http://discord.gg/SequFJP)
