@@ -6,7 +6,7 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
 
 env:
-  VCPKG_CACHE_DIR: "~/.vcpkg/cache"
+  # VCPKG_CACHE_DIR: "~/.vcpkg/cache"
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   VCPKG_FEATURE_FLAGS: "dependencygraph"
 
@@ -39,7 +39,10 @@ jobs:
         id: "vcpkg-cache"
         with:
           key: "${{ runner.os }}-${{ matrix.arch }}-${{ matrix.build-config }}-vcpkg-${{ hashFiles('vcpkg.json') }}"
-          path: "${{ env.VCPKG_CACHE_DIR }}"
+          # path: "${{ env.VCPKG_CACHE_DIR }}"
+          path: |
+            swp-sdk/vcpkg_installed
+            vcpkg_installed
 
       - name: "Integrate vcpkg"
         run: "vcpkg integrate install"

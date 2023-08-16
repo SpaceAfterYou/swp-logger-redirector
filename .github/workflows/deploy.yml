@@ -45,8 +45,8 @@ jobs:
           key: "${{ runner.os }}-vcpkg-${{ hashFiles('vcpkg.json') }}"
           # path: "${{ env.VCPKG_CACHE_DIR }}"
           path: |
-            "swp-sdk/vcpkg_installed"
-            "vcpkg_installed"
+            swp-sdk/vcpkg_installed
+            vcpkg_installed
 
       - name: "Integrate vcpkg"
         run: "vcpkg integrate install"
