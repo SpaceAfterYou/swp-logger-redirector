@@ -2,7 +2,7 @@
 
 namespace lr::hooks::show_log
 {
-	void mock(void* _this, unsigned int level, char* format, ...)
+	void mock(void* _this, unsigned int level, const char* format, ...)
 	{
 		if (nullptr == format) {
 			spdlog::warn("[ShowLog] [{}] received null format", level);

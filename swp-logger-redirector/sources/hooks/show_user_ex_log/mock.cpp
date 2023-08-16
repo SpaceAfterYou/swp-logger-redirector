@@ -2,7 +2,7 @@
 
 namespace lr::hooks::show_user_ex_log
 {
-	void mock(void* _this, char* format, ...)
+	void mock(void* _this, const char* format, ...)
 	{
 		if (nullptr == format) {
 			spdlog::warn("[ShowUserExLog] received null format");
