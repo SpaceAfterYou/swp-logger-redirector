@@ -45,6 +45,7 @@ jobs:
             ./vcpkg_installed/
             C:/vcpkg/packages/
             C:/vcpkg/downloads/
+            C:/vcpkg/buildtrees/
 
       - name: "Integrate vcpkg"
         run: "vcpkg integrate install"

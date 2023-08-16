@@ -45,8 +45,11 @@ jobs:
           key: "${{ runner.os }}-vcpkg-${{ hashFiles('vcpkg.json') }}"
           # path: "${{ env.VCPKG_CACHE_DIR }}"
           path: |
-            swp-sdk/vcpkg_installed
-            vcpkg_installed
+            ./swp-sdk/vcpkg_installed/
+            ./vcpkg_installed/
+            C:/vcpkg/packages/
+            C:/vcpkg/downloads/
+            C:/vcpkg/buildtrees/
 
       - name: "Integrate vcpkg"
         run: "vcpkg integrate install"
@@ -63,7 +66,7 @@ jobs:
       - name: "Publish build"
         uses: "softprops/action-gh-release@master"
         with:
-          name: "SoulWorker Plugin Loader ${{ github.ref_name }}"
+          name: "SoulWorkerPlugin Logger Redirector ${{ github.ref_name }}"
           files: ${{ env.archive-path }}
           generate_release_notes: true
           tag_name: "${{ github.ref_name }}"
