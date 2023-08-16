@@ -6,7 +6,7 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
 
 env:
-  VCPKG_CACHE_DIR: "${{ github.workspace }}\\vcpkg\\cache"
+  # VCPKG_CACHE_DIR: "${{ github.workspace }}\\vcpkg\\cache"
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   VCPKG_FEATURE_FLAGS: "dependencygraph"
 
@@ -43,7 +43,10 @@ jobs:
         uses: "actions/cache@main"
         with:
           key: "${{ runner.os }}-vcpkg-${{ hashFiles('vcpkg.json') }}"
-          path: "${{ env.VCPKG_CACHE_DIR }}"
+          # path: "${{ env.VCPKG_CACHE_DIR }}"
+          path: |
+            "swp-sdk/vcpkg_installed"
+            "vcpkg_installed"
 
       - name: "Integrate vcpkg"
         run: "vcpkg integrate install"
