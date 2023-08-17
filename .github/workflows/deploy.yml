@@ -42,7 +42,7 @@ jobs:
       - name: "Cache VCPKG packages"
         uses: "actions/cache@main"
         with:
-          key: "${{ runner.os }}-vcpkg-${{ hashFiles('vcpkg.json') }}"
+          key: "${{ runner.os }}-${{ matrix.arch }}-${{ matrix.build-config }}-vcpkg-${{ hashFiles('vcpkg.json') }}"
           # path: "${{ env.VCPKG_CACHE_DIR }}"
           path: |
             ./swp-sdk/vcpkg_installed/
