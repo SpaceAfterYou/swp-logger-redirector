@@ -21,7 +21,7 @@ jobs:
       matrix:
         build-config: ["Debug", "Release"]
         arch: ["x64", "x86"]
-        path: ["*.dll *.pdb", "*.dll"]
+        path: ["swp/**/*.dll swp/**/*.pdb", "swp/**/*.dll"]
 
     env:
       archive-path: ${{ github.event.repository.name }}-${{ github.ref_name }}-${{ matrix.build-config }}-${{ matrix.arch }}${{ contains(matrix.path, '.pdb') && '-WithDebugSymbols' || '' }}.zip
@@ -55,8 +55,7 @@ jobs:
         run: "msbuild /m /p:Configuration=${{ matrix.build-config }} /property:Platform=${{ matrix.arch }}"
 
       - name: "Pack to archive"
-        shell: "bash"
         run: |
-            cd bin
-            zip -r ${{ env.archive-path }} . ${{ matrix.path }}
-            unzip -l ${{ env.archive-path }}
+            cd bin/${{ matrix.build-config }}
+            7z -r a ${{ env.archive-path }} ${{ matrix.path }}
+            7z l ${{ env.archive-path }}

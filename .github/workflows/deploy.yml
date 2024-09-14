@@ -5,10 +5,11 @@ on:
     branches:
       - "v[0-9]+.[0-9]+.[0-9]+"
 
-env: 
+env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
   VCPKG_FEATURE_FLAGS: "dependencygraph"
+  RELEASE_NAME: ${{ vars.RELEASE_NAME }}
 
 permissions:
   contents: "write"
@@ -21,7 +22,7 @@ jobs:
       matrix:
         build-config: ["Debug", "Release"]
         arch: ["x64", "x86"]
-        path: ["*.dll *.pdb", "*.dll"]
+        path: ["swp/**/*.dll swp/**/*.pdb", "swp/**/*.dll"]
 
     env:
       archive-path: ${{ github.event.repository.name }}-${{ github.ref_name }}-${{ matrix.build-config }}-${{ matrix.arch }}${{ contains(matrix.path, '.pdb') && '-WithDebugSymbols' || '' }}.zip
@@ -55,15 +56,15 @@ jobs:
         run: "msbuild /m /p:Configuration=${{ matrix.build-config }} /property:Platform=${{ matrix.arch }}"
 
       - name: "Pack to archive"
-        shell: "bash"
         run: |
-            "cd bin"
-            "zip -r ${{ env.archive-path }} . ${{ matrix.path }}"
+            cd bin/${{ matrix.build-config }}
+            7z -r a ${{ env.archive-path }} ${{ matrix.path }}
+            7z l ${{ env.archive-path }}
 
       - name: "Publish build"
         uses: "softprops/action-gh-release@master"
         with:
-          name: "SoulWorkerPlugin Logger Redirector ${{ github.ref_name }}"
+          name: "${{ env.RELEASE_NAME }} ${{ github.ref_name }}"
           files: ${{ env.archive-path }}
           generate_release_notes: true
           tag_name: "${{ github.ref_name }}"
