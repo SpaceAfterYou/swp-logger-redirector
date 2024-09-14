@@ -6,8 +6,8 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
 
 env:
-  # VCPKG_CACHE_DIR: "~/.vcpkg/cache"
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
   VCPKG_FEATURE_FLAGS: "dependencygraph"
 
 permissions:
@@ -24,6 +24,13 @@ jobs:
 
     name: "Build a ${{ matrix.build-config }} (${{ matrix.arch }}) version"
     steps:
+      - name: "Export GitHub Actions cache environment variables"
+        uses: "actions/github-script@main"
+        with:
+          script: |
+            core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
+            core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+
       - name: "Checkout"
         uses: "actions/checkout@main"
         with:
@@ -33,19 +40,6 @@ jobs:
         uses: "microsoft/setup-msbuild@main"
         with:
           vs-prerelease: true
-
-      - name: "Cache VCPKG packages"
-        uses: "actions/cache@v2"
-        id: "vcpkg-cache"
-        with:
-          key: "${{ runner.os }}-${{ matrix.arch }}-${{ matrix.build-config }}-vcpkg-${{ hashFiles('vcpkg.json') }}"
-          # path: "${{ env.VCPKG_CACHE_DIR }}"
-          path: |
-            ./swp-sdk/vcpkg_installed/
-            ./vcpkg_installed/
-            C:/vcpkg/packages/
-            C:/vcpkg/downloads/
-            C:/vcpkg/buildtrees/
 
       - name: "Integrate vcpkg"
         run: "vcpkg integrate install"

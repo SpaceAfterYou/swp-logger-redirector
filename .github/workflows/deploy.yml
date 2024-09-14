@@ -6,8 +6,9 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
 
 env:
-  # VCPKG_CACHE_DIR: "${{ github.workspace }}\\vcpkg\\cache"
+env: 
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
   VCPKG_FEATURE_FLAGS: "dependencygraph"
 
 permissions:
@@ -28,6 +29,13 @@ jobs:
 
     name: "Build a ${{ matrix.build-config }} (${{ matrix.arch }} | ${{ matrix.path }}) version"
     steps:
+      - name: "Export GitHub Actions cache environment variables"
+        uses: "actions/github-script@main"
+        with:
+          script: |
+            core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
+            core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+
       - name: "Print Archive name"
         run: "echo ${{ env.archive-path }}"
 
@@ -39,18 +47,6 @@ jobs:
       - name: "Add MSBuild to PATH"
         uses: "microsoft/setup-msbuild@main"
 
-      - name: "Cache VCPKG packages"
-        uses: "actions/cache@main"
-        with:
-          key: "${{ runner.os }}-${{ matrix.arch }}-${{ matrix.build-config }}-vcpkg-${{ hashFiles('vcpkg.json') }}"
-          # path: "${{ env.VCPKG_CACHE_DIR }}"
-          path: |
-            ./swp-sdk/vcpkg_installed/
-            ./vcpkg_installed/
-            C:/vcpkg/packages/
-            C:/vcpkg/downloads/
-            C:/vcpkg/buildtrees/
-
       - name: "Integrate vcpkg"
         run: "vcpkg integrate install"
 
@@ -59,9 +55,6 @@ jobs:
 
       - name: "Pack to archive"
         run: "Compress-Archive -Path ${{ matrix.path }} -DestinationPath ${{ env.archive-path }}"
-
-      - name: "Files in workplace"
-        run: "ls ${{ github.workspace }}"
 
       - name: "Publish build"
         uses: "softprops/action-gh-release@master"
