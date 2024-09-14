@@ -1,4 +1,4 @@
-name: "Test build"
+name: "Test Build"
 
 on:
   push:
@@ -21,8 +21,12 @@ jobs:
       matrix:
         build-config: ["Debug", "Release"]
         arch: ["x64", "x86"]
+        path: ["*.dll *.pdb", "*.dll"]
 
-    name: "Build a ${{ matrix.build-config }} (${{ matrix.arch }}) version"
+    env:
+      archive-path: ${{ github.event.repository.name }}-${{ github.ref_name }}-${{ matrix.build-config }}-${{ matrix.arch }}${{ contains(matrix.path, '.pdb') && '-WithDebugSymbols' || '' }}.zip
+
+    name: "Build a ${{ matrix.build-config }} (${{ matrix.arch }} | ${{ matrix.path }}) version"
     steps:
       - name: "Export GitHub Actions cache environment variables"
         uses: "actions/github-script@main"
@@ -30,6 +34,9 @@ jobs:
           script: |
             core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
             core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+
+      - name: "Print Archive name"
+        run: "echo ${{ env.archive-path }}"
 
       - name: "Checkout"
         uses: "actions/checkout@main"
@@ -46,3 +53,10 @@ jobs:
 
       - name: "Build solution"
         run: "msbuild /m /p:Configuration=${{ matrix.build-config }} /property:Platform=${{ matrix.arch }}"
+
+      - name: "Pack to archive"
+        shell: "bash"
+        run: |
+            "cd bin"
+            "zip -r ${{ env.archive-path }} . ${{ matrix.path }}"
+            "unzip -l ${{ env.archive-path }}"
