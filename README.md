@@ -16,13 +16,21 @@ First of all, after the first launch of the game with the loader, in the folder 
 {
   // ...
 
-  // An optional step. This will enable the terminal.
-  // Without it, the output will only go to a file in the logs folder.
-  // With this both to the terminal and to the file.
-  "use_console": true, 
+  "console": {
+    // An optional step. This will enable the terminal.
+    // Without it, the output will only go to a file in the logs folder.
+    // With this both to the terminal and to the file.
+    "use": true,
+
+    // This will prevent the terminal closing,
+    // after the game is closed.
+    "leave": true,
+  },
 
   // Logging level.
-  "level": "trace"
+  "logger": {
+    "level": "trace"
+  }
 
   // ...
 }
@@ -31,8 +39,7 @@ First of all, after the first launch of the game with the loader, in the folder 
 > [The available logging levels can be found in the source code of spdlog](https://github.com/gabime/spdlog/blob/v1.x/include/spdlog/common.h#L244)
 
 - Unpack the latest available archive from the [release](../../releases) page into your game folder. Replace the files if necessary
-- Also, you need to install the [plugin loader](https://github.com/SoulWorkerResearch/swp-launcher)
-- Now you can run the game using steam
+- Also, you need to install a [plugin launcher](https://github.com/SoulWorkerResearch/swp-launcher) or something else to run the game with plugin support.
 
 ## For Developers
 
