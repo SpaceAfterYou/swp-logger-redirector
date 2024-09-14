@@ -57,6 +57,6 @@ jobs:
       - name: "Pack to archive"
         shell: "bash"
         run: |
-            "cd bin"
-            "zip -r ${{ env.archive-path }} . ${{ matrix.path }}"
-            "unzip -l ${{ env.archive-path }}"
+            cd bin
+            zip -r ${{ env.archive-path }} . ${{ matrix.path }}
+            unzip -l ${{ env.archive-path }}
