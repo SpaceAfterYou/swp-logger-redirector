@@ -9,18 +9,19 @@ namespace lr::hooks::show_log
 	{
 		using namespace swpsdk::detour;
 
-		constexpr static const std::array any_of{ /* x32 */ "?ShowLog@CDebugLog@@QAAXKPBDZZ", /* x64 */ "?ShowLog@CDebugLog@@QEAAXKPEBDZZ" };
+#if defined(_X86_)
+		const auto signature{ "?ShowLog@CDebugLog@@QAAXKPBDZZ" };
+#elif defined(_AMD64_)
+		const auto signature{ "?ShowLog@CDebugLog@@QEAAXKPEBDZZ" };
+#endif
 
-		return std::ranges::any_of(any_of, [](const char* _name) 
-			{
-				auto ptr{ DetourFindFunction("GamePlugin.vPlugin", _name) };
+		auto ptr{ DetourFindFunction("GamePlugin.vPlugin", signature) };
 
-				if (NULL == ptr) {
-					spdlog::critical("{0} not found in GamePlugin.vPlugin", _name);
-					return false;
-				}
+		if (NULL == ptr) {
+			spdlog::critical("{0} not found in GamePlugin.vPlugin", signature);
+			return false;
+		}
 
-				return attach(ptr, mock, "ShowLog");
-			});
+		return attach(ptr, mock, "ShowLog");
 	}
 }
